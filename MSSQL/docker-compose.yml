@@ -1,0 +1,27 @@
+version: "3.8"
+name: mssql
+services:
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: "P@ssw0rd"  # Requirido pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, e numeros e/ou símbolos não alfanuméricos.
+    ports:
+      - 1433:1433
+    expose:
+      - 1433
+    volumes:
+      - ./data:/var/opt/mssql/data
+      - ./log:/var/opt/mssql/log
+      - ./secrets:/var/opt/mssql/secrets
+      - ./backup:/var/opt/mssql/backup
+      - ./dump:/var/opt/mssql/dump
+    networks:
+      - database_mssql
+
+networks:
+  database_mssql:
+    name: database_mssql
