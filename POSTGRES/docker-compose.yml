@@ -1,9 +1,9 @@
 version: "3.7"
-name:postgre
+name: postgres
 services:
   postgres:
-    image: postgres:12.15
-    container_name: postgre
+    image: postgres:latest
+    container_name: postgres
     restart: always
     volumes:
       - ./data:/var/lib/postgresql/data
