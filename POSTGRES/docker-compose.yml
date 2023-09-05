@@ -1,0 +1,21 @@
+version: "3.7"
+name:postgre
+services:
+  postgres:
+    image: postgres:12.15
+    container_name: postgre
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=database
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    networks:
+      - database_postgres
+
+networks:
+    database_postgres:
+        name: database_postgres
